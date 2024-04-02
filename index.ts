@@ -11,7 +11,6 @@ import { ICBRCPoolDocument } from './src/db/documents/interfaces/ICBRCPoolDocume
 import { ICBRCShareDocument } from './src/db/documents/interfaces/ICBRCShareDocument.js'
 import { ICBRCTransferDocument } from './src/db/documents/interfaces/ICBRCTransferDocument.js'
 import { IJobDocument } from './src/db/documents/interfaces/IJobDocument.js'
-import { IKeyHashToPointerDocument } from './src/db/documents/interfaces/IKeyHashToPointerDocument.js'
 import { IXmailDocument } from './src/db/documents/interfaces/IXmailDocument.js'
 import { IXopDocument } from './src/db/documents/interfaces/IXopDocument.js'
 import { IXSynthDocument } from './src/db/documents/interfaces/IXSynthDocument.js'
@@ -26,7 +25,6 @@ import { CBRCMint } from './src/db/models/CBRCMint.js'
 import { CBRCPool } from './src/db/models/CBRCPool.js'
 import { CBRCShare } from './src/db/models/CBRCShare.js'
 import { CBRCTransfer } from './src/db/models/CBRCTransfer.js'
-import { KeyHashToPointer } from './src/db/models/KeyHashToPointer.js'
 import { Job } from './src/db/models/Job.js'
 import { Xmail } from './src/db/models/Xmail.js'
 import { Xop } from './src/db/models/Xop.js'
@@ -41,7 +39,6 @@ import { CBRCMintRepository } from './src/db/repositories/CBRCMintRepository.js'
 import { CBRCPoolRepository } from './src/db/repositories/CBRCPoolRepository.js'
 import { CBRCShareRepository } from './src/db/repositories/CBRCShareRepository.js'
 import { CBRCTransferRepository } from './src/db/repositories/CBRCTransferRepository.js'
-import { KeyHashToPointerRepository } from './src/db/repositories/KeyHashToPointerRepository.js'
 import { JobRepository } from './src/db/repositories/JobRepository.js'
 import { XmailRepository } from './src/db/repositories/XmailRepository.js'
 import { XopRepository } from './src/db/repositories/XopRepository.js'
@@ -61,7 +58,6 @@ export { ICBRCPoolDocument }
 export { ICBRCShareDocument }
 export { ICBRCTransferDocument }
 export { IJobDocument }
-export { IKeyHashToPointerDocument }
 export { IXmailDocument }
 export { IXopDocument }
 export { IXSynthDocument }
@@ -76,7 +72,6 @@ export { CBRCMint }
 export { CBRCPool }
 export { CBRCShare }
 export { CBRCTransfer }
-export { KeyHashToPointer }
 export { Job }
 export { Xmail }
 export { Xop }
@@ -91,7 +86,6 @@ export { CBRCMintRepository }
 export { CBRCPoolRepository }
 export { CBRCShareRepository }
 export { CBRCTransferRepository }
-export { KeyHashToPointerRepository }
 export { JobRepository }
 export { XmailRepository }
 export { XopRepository }
