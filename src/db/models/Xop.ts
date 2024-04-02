@@ -58,10 +58,10 @@ export class Xop extends BaseModel {
 
         for (const key in xopDocument.xparams) {
             const value = xopDocument.xparams[key];
-            
+
             this.xparams.set(key, value);
         }
-        
+
         this.xtarget = new XTargetObject(xopDocument.xtarget);
         this.success = xopDocument.success;
         this.errCode = xopDocument.errCode;
@@ -75,7 +75,7 @@ export class Xop extends BaseModel {
 
         this.xparams.forEach((key: string, value: string) => {
             params[key] = value;
-        })
+        });
 
         const document: IXopDocument = {
             inscriptionId: this.inscriptionId,
@@ -96,7 +96,7 @@ export class Xop extends BaseModel {
             move: this.move,
             hasBurned: this.hasBurned,
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

@@ -1,11 +1,18 @@
 import { AnyError, Db, MongoClient, ReadPreference } from 'mongodb';
-import { IConfig, Globals, MONGO_CONNECTION_TYPE, MongoCredentials, MongoCredentialsDTO, IConfigBase } from '@btc-vision/motoswapcommon';
+import {
+    Globals,
+    IConfig,
+    IConfigBase,
+    MONGO_CONNECTION_TYPE,
+    MongoCredentials,
+    MongoCredentialsDTO,
+} from '@btc-vision/motoswapcommon';
 import { InnerDBManager } from './interfaces/IDBManager.js';
 
 Globals.register();
 
 // @ts-ignore
-BigInt.prototype.toJSON = function () {
+BigInt.prototype.toJSON = function() {
     return this.toString();
 };
 
@@ -32,20 +39,20 @@ export class ConfigurableDBManager extends InnerDBManager {
         super(config);
     }
 
-    public createNewMongoClient(): [MongoClient, string]  {
+    public createNewMongoClient(): [MongoClient, string] {
         const mongoCredentials = this.#getMongoCredentials();
 
         return [
             new MongoClient(mongoCredentials.connectionUri,
-                this.mongoOpts), mongoCredentials.databaseName
+                this.mongoOpts), mongoCredentials.databaseName,
         ];
     }
 
     public async setup(
-        _targetDatabase: string | MONGO_CONNECTION_TYPE
+        _targetDatabase: string | MONGO_CONNECTION_TYPE,
     ): Promise<boolean> {
         if (!_targetDatabase) {
-             _targetDatabase = this.config.DATABASE.CONNECTION_TYPE
+            _targetDatabase = this.config.DATABASE.CONNECTION_TYPE;
         }
 
         if (this.isSetup) return true;
@@ -61,7 +68,7 @@ export class ConfigurableDBManager extends InnerDBManager {
         if (!this.mongo) {
             this.mongo = new MongoClient(this.connectionUri, this.mongoOpts);
         }
-        
+
         return false;
     }
 

@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { BaseModel } from './BaseModel.js';
-import { TypeConverter } from '@btc-vision/motoswapcommon'
+import { TypeConverter } from '@btc-vision/motoswapcommon';
 import { ICBRCPoolDocument } from '../documents/interfaces/ICBRCPoolDocument.js';
 
 export class CBRCPool extends BaseModel {
@@ -43,7 +43,7 @@ export class CBRCPool extends BaseModel {
             supplyTokenB: TypeConverter.bigintToDecimal128(this.supplyTokenB),
             totalShares: TypeConverter.bigintToDecimal128(this.totalShares),
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

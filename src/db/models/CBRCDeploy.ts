@@ -1,6 +1,6 @@
-import { ObjectId, Decimal128 } from 'mongodb';
+import { Decimal128, ObjectId } from 'mongodb';
 import { BaseModel } from './BaseModel.js';
-import { ICBRCDeployDocument, ICBRCDeployDocumentMintOps } from '../documents/interfaces/ICBRCDeployDocument.js';
+import { ICBRCDeployDocument } from '../documents/interfaces/ICBRCDeployDocument.js';
 import { TickerHelper } from '@btc-vision/motoswapcommon';
 
 export declare type CBRCDeployMintOps = [number, number];
@@ -48,7 +48,7 @@ export class CBRCDeploy extends BaseModel {
             isMintable: this.isMintable,
             mintOperations: this.mintOperations,
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

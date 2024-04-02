@@ -1,6 +1,6 @@
 import { BaseModel } from './BaseModel.js';
-import { IAccountDocument } from '../documents/interfaces/IAccountDocument.js'
-import { TypeConverter } from '@btc-vision/motoswapcommon'
+import { IAccountDocument } from '../documents/interfaces/IAccountDocument.js';
+import { TypeConverter } from '@btc-vision/motoswapcommon';
 
 export class Account extends BaseModel {
     public account: string;
@@ -31,7 +31,7 @@ export class Account extends BaseModel {
             mint: TypeConverter.bigintToDecimal128(this.mint),
             stake: TypeConverter.bigintToDecimal128(this.stake),
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

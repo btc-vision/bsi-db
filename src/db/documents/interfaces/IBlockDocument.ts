@@ -1,4 +1,3 @@
-import { Document } from 'mongodb';
 import { IBaseDocument } from './IBaseDocument.js';
 
 export interface IBlockDocument extends IBaseDocument {

@@ -1,4 +1,4 @@
-import { ObjectId, Decimal128 } from 'mongodb';
+import { Decimal128, ObjectId } from 'mongodb';
 import { IBaseDocument } from './IBaseDocument.js';
 
 export interface IXmailDocumentTargets {

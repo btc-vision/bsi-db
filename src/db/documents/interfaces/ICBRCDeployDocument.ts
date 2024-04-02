@@ -1,4 +1,4 @@
-import { Decimal128, Document, ObjectId } from 'mongodb';
+import { Decimal128, ObjectId } from 'mongodb';
 import { IBaseDocument } from './IBaseDocument.js';
 
 export declare type ICBRCDeployDocumentMintOps = [number, number];
@@ -55,5 +55,5 @@ export interface ICBRCDeployDocument extends IBaseDocument {
     /**
      * Mint operations
      */
-    readonly mintOperations: ICBRCDeployDocumentMintOps; 
+    readonly mintOperations: ICBRCDeployDocumentMintOps;
 }

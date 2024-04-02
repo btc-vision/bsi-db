@@ -42,7 +42,7 @@ export class XSynth extends BaseModel {
             success: this.success,
             errCode: this.errCode,
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

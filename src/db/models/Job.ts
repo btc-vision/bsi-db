@@ -20,7 +20,7 @@ export class Job extends BaseModel {
             work: this.work,
             done: this.done,
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

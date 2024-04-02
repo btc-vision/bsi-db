@@ -1,25 +1,44 @@
-import { Collection, Db, Filter, ObjectId, Sort, OptionalUnlessRequiredId, ClientSession, OperationOptions, DeleteOptions, FindOptions, CountDocumentsOptions, UpdateOptions, InsertOneOptions } from 'mongodb';
-import { Logger, DataAccessError, DataAccessErrorType } from '@btc-vision/motoswapcommon';
+import {
+    ClientSession,
+    Collection,
+    CountDocumentsOptions,
+    Db,
+    DeleteOptions,
+    Filter,
+    FindOptions,
+    InsertOneOptions,
+    ObjectId,
+    OperationOptions,
+    OptionalUnlessRequiredId,
+    Sort,
+    UpdateOptions,
+} from 'mongodb';
+import { DataAccessError, DataAccessErrorType, Logger } from '@btc-vision/motoswapcommon';
 import { IBaseDocument } from '../documents/interfaces/IBaseDocument.js';
-import { PagingQueryInfo, PagingQueryResult } from './PagingQuery.js'
+import { PagingQueryInfo, PagingQueryResult } from './PagingQuery.js';
 import { DBConstants } from '../DBConstants.js';
 
 export abstract class BaseRepository<TDocument extends IBaseDocument> extends Logger {
     protected _db: Db;
-    
+
+    protected constructor(db: Db) {
+        super();
+        this._db = db;
+    }
+
     public async deleteById(id: ObjectId,
-        currentSession?: ClientSession): Promise<boolean> {
+                            currentSession?: ClientSession): Promise<boolean> {
         try {
             const collection = this.getCollection();
             const filter: Partial<Filter<TDocument>> = {
-                _id: id
+                _id: id,
             } as Partial<Filter<TDocument>>;
 
             const options: DeleteOptions = this.getOptions(currentSession);
-            
+
             const result = await collection.deleteOne(filter,
                 options);
-            
+
             return (result.deletedCount === 1);
         } catch (error) {
             if (error instanceof (Error)) {
@@ -33,13 +52,13 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
     }
 
     public async delete(document: TDocument,
-        session?: ClientSession): Promise<boolean> {
+                        session?: ClientSession): Promise<boolean> {
         return await this.deleteById(document._id,
             session);
     }
 
     public async getAll(criteria?: Partial<Filter<TDocument>>,
-        currentSession?: ClientSession): Promise<TDocument[]> {
+                        currentSession?: ClientSession): Promise<TDocument[]> {
         try {
             const collection = this.getCollection();
             const query = criteria || {};
@@ -57,11 +76,11 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
     }
 
     public async getById(id: ObjectId,
-        currentSession?: ClientSession): Promise<TDocument | null> {
+                         currentSession?: ClientSession): Promise<TDocument | null> {
         try {
             const collection = this.getCollection();
             const filter: Partial<Filter<TDocument>> = {
-                _id: id
+                _id: id,
             } as Partial<Filter<TDocument>>;
 
             const options: FindOptions = this.getOptions(currentSession);
@@ -80,7 +99,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
     }
 
     public async getCount(criteria?: Partial<Filter<TDocument>>,
-        currentSession?: ClientSession): Promise<number> {
+                          currentSession?: ClientSession): Promise<number> {
         try {
             const collection = this.getCollection();
             const query = criteria || {};
@@ -98,7 +117,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
     }
 
     public async queryOne(criteria: Partial<Filter<TDocument>>,
-        currentSession?: ClientSession): Promise<TDocument | null>  {
+                          currentSession?: ClientSession): Promise<TDocument | null> {
         try {
             const collection = this.getCollection();
             const options: FindOptions = this.getOptions(currentSession);
@@ -115,7 +134,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
     }
 
     public async queryMany(criteria: Partial<Filter<TDocument>>,
-        currentSession?: ClientSession): Promise<TDocument[]> {
+                           currentSession?: ClientSession): Promise<TDocument[]> {
         try {
             const collection = this.getCollection();
             const options: FindOptions = this.getOptions(currentSession);
@@ -132,9 +151,9 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
     }
 
     public async queryManyAndSortPaged(criteria: Partial<Filter<TDocument>>,
-        sort: Sort,
-        pagingQueryInfo: PagingQueryInfo,
-        currentSession?: ClientSession
+                                       sort: Sort,
+                                       pagingQueryInfo: PagingQueryInfo,
+                                       currentSession?: ClientSession,
     ): Promise<PagingQueryResult<TDocument>> {
         try {
             const collection = this.getCollection();
@@ -164,8 +183,8 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
     }
 
     public async queryManyAndSort(criteria: Partial<Filter<TDocument>>,
-        sort: Sort,
-        currentSession?: ClientSession): Promise<TDocument[]> {
+                                  sort: Sort,
+                                  currentSession?: ClientSession): Promise<TDocument[]> {
         try {
             const collection = this.getCollection();
             const options: FindOptions = this.getOptions(currentSession);
@@ -184,7 +203,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
     }
 
     public async save(document: TDocument,
-        currentSession?: ClientSession): Promise<void> {
+                      currentSession?: ClientSession): Promise<void> {
         try {
             const collection = this.getCollection();
             const currentVersion = document.version;
@@ -192,7 +211,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
 
             const filter: Partial<Filter<TDocument>> = {
                 _id: document._id,
-                version: currentVersion
+                version: currentVersion,
             } as Partial<Filter<TDocument>>;
 
             const { _id, ...updateData } = document;
@@ -228,16 +247,16 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
     }
 
     public async updatePartial(id: ObjectId,
-        version: number,
-        document: Partial<TDocument>,
-        currentSession?: ClientSession): Promise<void> {
+                               version: number,
+                               document: Partial<TDocument>,
+                               currentSession?: ClientSession): Promise<void> {
         try {
             const collection = this.getCollection();
             document.version = version + 1;
 
             const filter: Partial<Filter<TDocument>> = {
                 _id: id,
-                version: version
+                version: version,
             } as Partial<Filter<TDocument>>;
 
             const options: UpdateOptions = this.getOptions(currentSession);
@@ -245,7 +264,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
             const updateResult = await collection.updateOne(
                 filter,
                 { $set: document },
-                options
+                options,
             );
 
             if (updateResult.modifiedCount !== 1) {
@@ -264,18 +283,13 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
         }
     }
 
-    protected constructor(db: Db) {
-        super();
-        this._db = db;
-    }
-
     protected abstract getCollection(): Collection<TDocument>;
 
     private getOptions(currentSession?: ClientSession): OperationOptions {
         const options: OperationOptions = {};
 
         if (currentSession) {
-            options.session = currentSession
+            options.session = currentSession;
         }
 
         return options;

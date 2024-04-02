@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { BaseModel } from './BaseModel.js';
-import { TypeConverter } from '@btc-vision/motoswapcommon'
+import { TypeConverter } from '@btc-vision/motoswapcommon';
 import { ICBRCShareDocument } from '../documents/interfaces/ICBRCShareDocument.js';
 
 export class CBRCShare extends BaseModel {
@@ -34,19 +34,19 @@ export class CBRCShare extends BaseModel {
 
     public override toDocument(): Readonly<ICBRCShareDocument> {
         const document: ICBRCShareDocument = {
-            pool:  this.pool,
-            xid:  this.xid,
-            type:  this.type,
-            ticks:  this.ticks,
-            account:  this.account,
-            accops:  this.accops,
+            pool: this.pool,
+            xid: this.xid,
+            type: this.type,
+            ticks: this.ticks,
+            account: this.account,
+            accops: this.accops,
             accumulativeA: TypeConverter.bigintToDecimal128Array(this.accumulativeA),
             accumulativeB: TypeConverter.bigintToDecimal128Array(this.accumulativeB),
             accumulative: TypeConverter.bigintToDecimal128Array(this.accumulative),
-            amount:  TypeConverter.bigintToDecimal128(this.amount),
-            lockBlock:  this.lockBlock,
+            amount: TypeConverter.bigintToDecimal128(this.amount),
+            lockBlock: this.lockBlock,
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

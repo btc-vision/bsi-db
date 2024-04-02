@@ -1,4 +1,4 @@
-import { Collection, Db, Document } from 'mongodb';
+import { Collection, Db } from 'mongodb';
 import { BaseRepository } from './BaseRepository.js';
 import { IAccountDocument } from '../documents/interfaces/IAccountDocument.js';
 

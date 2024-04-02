@@ -1,7 +1,7 @@
-import { Decimal128, ObjectId } from 'mongodb';
+import { ObjectId } from 'mongodb';
 import { BaseModel } from './BaseModel.js';
 import { ICBRCTransferDocument } from '../documents/interfaces/ICBRCTransferDocument.js';
-import { TypeConverter } from '@btc-vision/motoswapcommon'
+import { TypeConverter } from '@btc-vision/motoswapcommon';
 
 export class CBRCTransfer extends BaseModel {
     public xop: ObjectId;
@@ -23,7 +23,7 @@ export class CBRCTransfer extends BaseModel {
         this.account = cbrcTransferDocument.account;
         this.to = cbrcTransferDocument.to;
         this.transfered = cbrcTransferDocument.transfered;
-        this.output= cbrcTransferDocument.output;
+        this.output = cbrcTransferDocument.output;
     }
 
     public override toDocument(): Readonly<ICBRCTransferDocument> {
@@ -37,7 +37,7 @@ export class CBRCTransfer extends BaseModel {
             transfered: this.transfered,
             output: this.output,
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

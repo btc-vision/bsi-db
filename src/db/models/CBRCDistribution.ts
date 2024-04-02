@@ -1,7 +1,10 @@
 import { ObjectId } from 'mongodb';
 import { BaseModel } from './BaseModel.js';
-import { ICBRCDistributionDocument, ICBRCDistributionDocumentBox } from '../documents/interfaces/ICBRCDistributionDocument.js';
-import { TypeConverter } from '@btc-vision/motoswapcommon'
+import {
+    ICBRCDistributionDocument,
+    ICBRCDistributionDocumentBox,
+} from '../documents/interfaces/ICBRCDistributionDocument.js';
+import { TypeConverter } from '@btc-vision/motoswapcommon';
 
 export class CBRCDistributionBox {
     public ticker: string;
@@ -50,7 +53,7 @@ export class CBRCDistribution extends BaseModel {
             xout: this.xout,
             complete: TypeConverter.bigintToDecimal128(this.complete),
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

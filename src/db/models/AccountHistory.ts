@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 import { BaseModel } from './BaseModel.js';
-import { IAccountHistoryDocument } from '../documents/interfaces/IAccountHistoryDocument.js'
-import { TypeConverter } from '@btc-vision/motoswapcommon'
+import { IAccountHistoryDocument } from '../documents/interfaces/IAccountHistoryDocument.js';
+import { TypeConverter } from '@btc-vision/motoswapcommon';
 
 export class AccountHistory extends BaseModel {
     public xop: ObjectId;
@@ -26,7 +26,7 @@ export class AccountHistory extends BaseModel {
             source: this.source,
             xop: this.xop,
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

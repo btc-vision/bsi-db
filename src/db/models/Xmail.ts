@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 import { BaseModel } from './BaseModel.js';
 import { IXmailDocument, IXmailDocumentTargets } from '../documents/interfaces/IXmailDocument.js';
-import { TypeConverter } from '@btc-vision/motoswapcommon'
+import { TypeConverter } from '@btc-vision/motoswapcommon';
 
 export class XmailDocumentTargets {
     public account: string;
@@ -63,12 +63,12 @@ export class Xmail extends BaseModel {
                 amount: TypeConverter.bigintToDecimal128(item.amount),
                 success: item.success,
                 value: item.value,
-                errCode: item.errCode
+                errCode: item.errCode,
             })),
             success: this.success,
             errCode: this.errCode,
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;

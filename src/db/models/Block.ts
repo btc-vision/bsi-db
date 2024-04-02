@@ -37,7 +37,7 @@ export class Block extends BaseModel {
             miner: this.miner,
             time: this.time,
             version: this.version,
-            _id: this._id
+            _id: this._id,
         };
 
         return document;
