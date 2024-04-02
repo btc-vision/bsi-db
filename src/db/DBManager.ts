@@ -20,8 +20,8 @@ BigInt.prototype.toJSON = function () {
 export class ConfigurableDBManager extends InnerDBManager {
     public isConnected: boolean = false;
     public db: Db | null = null;
+    public client: MongoClient | undefined;
 
-    private client: MongoClient | undefined;
     private mongo: MongoClient | undefined;
     private isConnecting: boolean = false;
     private databaseName: string = '';
