@@ -1,9 +1,10 @@
-import { ConfigBase, ConfigManager } from '@btc-vision/motoswapcommon';
+import { TestConfigLoader } from './TestConfigLoader.js';
+import { TestConfig } from './TestConfig.js';
 import path from 'path';
 
 const configPath = path.join(__dirname, '../../', 'tests/config/motoswap.unit.test.conf');
 
-const configManager: ConfigManager<ConfigBase> = new ConfigManager(configPath);
-const config: ConfigBase = configManager.getConfigs();
+const configManager: TestConfigLoader = new TestConfigLoader(configPath);
+const config: TestConfig = configManager.getConfigs();
 
-export const Config: ConfigBase = config;
+export const Config: TestConfig = config;

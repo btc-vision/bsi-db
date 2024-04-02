@@ -1,4 +1,4 @@
-import { IConfig, Logger, MONGO_CONNECTION_TYPE } from '@btc-vision/motoswapcommon';
+import { IConfig, IConfigBase, Logger, MONGO_CONNECTION_TYPE } from '@btc-vision/motoswapcommon';
 
 export interface IDBManager {
     connect: () => Promise<void>;
@@ -7,9 +7,9 @@ export interface IDBManager {
 }
 
 export abstract class InnerDBManager extends Logger implements IDBManager {
-    protected config: IConfig;
+    protected config: IConfig<IConfigBase>;
 
-    constructor(config: IConfig) {
+    constructor(config: IConfig<IConfigBase>) {
         super();
         this.config = config;
     }

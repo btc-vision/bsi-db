@@ -1,5 +1,5 @@
 import { AnyError, Db, MongoClient, ReadPreference } from 'mongodb';
-import {IConfig, Globals, MONGO_CONNECTION_TYPE, MongoCredentials, MongoCredentialsDTO} from '@btc-vision/motoswapcommon';
+import { IConfig, Globals, MONGO_CONNECTION_TYPE, MongoCredentials, MongoCredentialsDTO, IConfigBase } from '@btc-vision/motoswapcommon';
 import { InnerDBManager } from './interfaces/IDBManager.js';
 
 Globals.register();
@@ -28,7 +28,7 @@ export class ConfigurableDBManager extends InnerDBManager {
 
     private connectionPromise: Promise<void> | null = null;
 
-    constructor(config: IConfig) {
+    constructor(config: IConfig<IConfigBase>) {
         super(config);
     }
 
@@ -133,5 +133,3 @@ export class ConfigurableDBManager extends InnerDBManager {
         return mongoCredentials;
     }
 }
-
-//export const DBManagerInstance = new ConfigurableDBManager();
