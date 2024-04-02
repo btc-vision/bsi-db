@@ -20,7 +20,6 @@ export class DBTestHelper {
 
         const directoryPath = path.join(testDirectory, 'data');
         const filenames: string[] = await DBTestHelper.readFileNames(directoryPath);
-        const insertPromise: Promise<unknown>[] = [];
 
         for (let i = 0; i < filenames.length; i++) {
             const file = filenames[i];
@@ -36,12 +35,10 @@ export class DBTestHelper {
             }));
 
             console.log(`Cleaning to collection: ${path.parse(file).name}`);
-            insertPromise.push(db.collection(`${path.parse(file).name}`).deleteMany());
+            await db.collection(`${path.parse(file).name}`).deleteMany();
 
             console.log(`Importing to collection: ${path.parse(file).name}`);
-            insertPromise.push(db.collection(`${path.parse(file).name}`).insertMany(updatedDocuments));
+            await db.collection(`${path.parse(file).name}`).insertMany(updatedDocuments);
         }
-
-        await Promise.all(insertPromise);
     }
 }

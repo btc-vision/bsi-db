@@ -1,4 +1,4 @@
-import { Collection, Db, Filter, ObjectId, Sort, OptionalUnlessRequiredId, ClientSession, DeleteOptions, FindOptions, CountDocumentsOptions, UpdateOptions, InsertOneOptions } from 'mongodb';
+import { Collection, Db, Filter, ObjectId, Sort, OptionalUnlessRequiredId, ClientSession, OperationOptions, DeleteOptions, FindOptions, CountDocumentsOptions, UpdateOptions, InsertOneOptions } from 'mongodb';
 import { Logger, DataAccessError, DataAccessErrorType } from '@btc-vision/motoswapcommon';
 import { IBaseDocument } from '../documents/interfaces/IBaseDocument.js';
 import { PagingQueryInfo, PagingQueryResult } from './PagingQuery.js'
@@ -15,10 +15,8 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
                 _id: id
             } as Partial<Filter<TDocument>>;
 
-            const options: DeleteOptions = {
-                session: currentSession
-            };
-
+            const options: DeleteOptions = this.getOptions(currentSession);
+            
             const result = await collection.deleteOne(filter,
                 options);
             
@@ -45,9 +43,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
         try {
             const collection = this.getCollection();
             const query = criteria || {};
-            const options: FindOptions = {
-                session: currentSession
-            };
+            const options: FindOptions = this.getOptions(currentSession);
 
             return await collection.find(query,
                 options).toArray() as TDocument[];
@@ -67,9 +63,8 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
             const filter: Partial<Filter<TDocument>> = {
                 _id: id
             } as Partial<Filter<TDocument>>;
-            const options: FindOptions = {
-                session: currentSession
-            };
+
+            const options: FindOptions = this.getOptions(currentSession);
 
             return await collection.findOne(filter,
                 options) as TDocument | null;
@@ -89,9 +84,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
         try {
             const collection = this.getCollection();
             const query = criteria || {};
-            const options: CountDocumentsOptions = {
-                session: currentSession
-            };
+            const options: CountDocumentsOptions = this.getOptions(currentSession);
 
             return await collection.countDocuments(query,
                 options);
@@ -108,9 +101,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
         currentSession?: ClientSession): Promise<TDocument | null>  {
         try {
             const collection = this.getCollection();
-            const options: FindOptions = {
-                session: currentSession
-            };
+            const options: FindOptions = this.getOptions(currentSession);
 
             return await collection.findOne(criteria,
                 options) as TDocument;
@@ -127,9 +118,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
         currentSession?: ClientSession): Promise<TDocument[]> {
         try {
             const collection = this.getCollection();
-            const options: FindOptions = {
-                session: currentSession
-            };
+            const options: FindOptions = this.getOptions(currentSession);
 
             return await collection.find(criteria,
                 options).toArray() as TDocument[];
@@ -151,9 +140,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
             const collection = this.getCollection();
             const skips = pagingQueryInfo.pageSize * (pagingQueryInfo.pageNumber - 1);
             let count: number = await this.getCount(criteria);
-            const options: FindOptions = {
-                session: currentSession
-            };
+            const options: FindOptions = this.getOptions(currentSession);
 
             const documents = await collection.find(criteria,
                 options)
@@ -181,9 +168,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
         currentSession?: ClientSession): Promise<TDocument[]> {
         try {
             const collection = this.getCollection();
-            const options: FindOptions = {
-                session: currentSession
-            };
+            const options: FindOptions = this.getOptions(currentSession);
 
             return await collection.find(criteria,
                 options)
@@ -213,9 +198,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
             const { _id, ...updateData } = document;
 
             if (_id.toString() !== DBConstants.NULL_OBJECT_ID) {
-                const options: UpdateOptions = {
-                    session: currentSession
-                };
+                const options: UpdateOptions = this.getOptions(currentSession);
 
                 const result = await collection.updateOne(filter,
                     { $set: updateData as Partial<TDocument> },
@@ -227,9 +210,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
                         `id ${document._id}, version: ${currentVersion}`);
                 }
             } else {
-                const options: InsertOneOptions = {
-                    session: currentSession
-                };
+                const options: InsertOneOptions = this.getOptions(currentSession);
 
                 document._id = new ObjectId();
                 await collection.insertOne(document as OptionalUnlessRequiredId<TDocument>,
@@ -259,9 +240,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
                 version: version
             } as Partial<Filter<TDocument>>;
 
-            const options: UpdateOptions = {
-                session: currentSession
-            };
+            const options: UpdateOptions = this.getOptions(currentSession);
 
             const updateResult = await collection.updateOne(
                 filter,
@@ -291,4 +270,14 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
     }
 
     protected abstract getCollection(): Collection<TDocument>;
+
+    private getOptions(currentSession?: ClientSession): OperationOptions {
+        const options: OperationOptions = {};
+
+        if (currentSession) {
+            options.session = currentSession
+        }
+
+        return options;
+    }
 }

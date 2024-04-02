@@ -538,7 +538,7 @@ describe('AccountRepository Integration Tests', () => {
 
                     await session.abortTransaction();
 
-                    const document = repo2.getById(new ObjectId('65ff1f6c0e0dd5a32089fc28'));
+                    const document = await repo2.getById(new ObjectId('65ff1f6c0e0dd5a32089fc28'));
 
                     expect(document).toBeDefined();
                     expect(document).not.toBeNull();
@@ -573,8 +573,8 @@ describe('AccountRepository Integration Tests', () => {
 
                     await session.commitTransaction();
 
-                    const document = repo2.getById(new ObjectId('65ff1f6c0e0dd5a32089fc28'));
-
+                    const document = await repo2.getById(new ObjectId('65ff1f6c0e0dd5a32089fc28'));
+                    
                     expect(document).toBeNull();
                 } finally {
                     session.endSession();
