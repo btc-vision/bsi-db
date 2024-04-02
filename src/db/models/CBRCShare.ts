@@ -1,7 +1,7 @@
-import { ObjectId } from 'mongodb';
-import { BaseModel } from './BaseModel.js';
 import { TypeConverter } from '@btc-vision/motoswapcommon';
+import { ObjectId } from 'mongodb';
 import { ICBRCShareDocument } from '../documents/interfaces/ICBRCShareDocument.js';
+import { BaseModel } from './BaseModel.js';
 
 export class CBRCShare extends BaseModel {
     public pool: ObjectId;
@@ -17,8 +17,7 @@ export class CBRCShare extends BaseModel {
     public lockBlock: number;
 
     constructor(public cbrcShareDocument: ICBRCShareDocument) {
-        super(cbrcShareDocument._id,
-            cbrcShareDocument.version);
+        super(cbrcShareDocument._id, cbrcShareDocument.version);
         this.pool = cbrcShareDocument.pool;
         this.xid = cbrcShareDocument.xid;
         this.type = cbrcShareDocument.type;
@@ -52,7 +51,3 @@ export class CBRCShare extends BaseModel {
         return document;
     }
 }
-
-
-
-

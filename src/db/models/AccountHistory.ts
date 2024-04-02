@@ -1,7 +1,7 @@
-import { ObjectId } from 'mongodb';
-import { BaseModel } from './BaseModel.js';
-import { IAccountHistoryDocument } from '../documents/interfaces/IAccountHistoryDocument.js';
 import { TypeConverter } from '@btc-vision/motoswapcommon';
+import { ObjectId } from 'mongodb';
+import { IAccountHistoryDocument } from '../documents/interfaces/IAccountHistoryDocument.js';
+import { BaseModel } from './BaseModel.js';
 
 export class AccountHistory extends BaseModel {
     public xop: ObjectId;
@@ -10,8 +10,7 @@ export class AccountHistory extends BaseModel {
     public amount: bigint;
 
     constructor(readonly accountHistoryDocument: IAccountHistoryDocument) {
-        super(accountHistoryDocument._id,
-            accountHistoryDocument.version);
+        super(accountHistoryDocument._id, accountHistoryDocument.version);
 
         this.xop = accountHistoryDocument.xop;
         this.account = accountHistoryDocument.account;

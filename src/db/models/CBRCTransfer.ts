@@ -1,7 +1,7 @@
-import { ObjectId } from 'mongodb';
-import { BaseModel } from './BaseModel.js';
-import { ICBRCTransferDocument } from '../documents/interfaces/ICBRCTransferDocument.js';
 import { TypeConverter } from '@btc-vision/motoswapcommon';
+import { ObjectId } from 'mongodb';
+import { ICBRCTransferDocument } from '../documents/interfaces/ICBRCTransferDocument.js';
+import { BaseModel } from './BaseModel.js';
 
 export class CBRCTransfer extends BaseModel {
     public xop: ObjectId;

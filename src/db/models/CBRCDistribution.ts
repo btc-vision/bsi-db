@@ -1,10 +1,10 @@
+import { TypeConverter } from '@btc-vision/motoswapcommon';
 import { ObjectId } from 'mongodb';
-import { BaseModel } from './BaseModel.js';
 import {
     ICBRCDistributionDocument,
     ICBRCDistributionDocumentBox,
 } from '../documents/interfaces/ICBRCDistributionDocument.js';
-import { TypeConverter } from '@btc-vision/motoswapcommon';
+import { BaseModel } from './BaseModel.js';
 
 export class CBRCDistributionBox {
     public ticker: string;
@@ -27,11 +27,10 @@ export class CBRCDistribution extends BaseModel {
     public complete: bigint;
 
     constructor(readonly cbrcDistributionDocument: ICBRCDistributionDocument) {
-        super(cbrcDistributionDocument._id,
-            cbrcDistributionDocument.version);
+        super(cbrcDistributionDocument._id, cbrcDistributionDocument.version);
         this.previouDistribution = cbrcDistributionDocument.previouDistribution;
         this.poolId = cbrcDistributionDocument.poolId;
-        this.box = cbrcDistributionDocument.box.map(item => new CBRCDistributionBox(item));
+        this.box = cbrcDistributionDocument.box.map((item) => new CBRCDistributionBox(item));
         this.baseBlock = cbrcDistributionDocument.baseBlock;
         this.distBlock = cbrcDistributionDocument.distBlock;
         this.xin = cbrcDistributionDocument.xin;
@@ -43,7 +42,7 @@ export class CBRCDistribution extends BaseModel {
         const document: ICBRCDistributionDocument = {
             previouDistribution: this.previouDistribution,
             poolId: this.poolId,
-            box: this.box.map(item => ({
+            box: this.box.map((item) => ({
                 ticker: item.ticker,
                 amount: TypeConverter.bigintToDecimal128(item.amount),
             })),

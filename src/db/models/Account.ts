@@ -1,6 +1,6 @@
-import { BaseModel } from './BaseModel.js';
-import { IAccountDocument } from '../documents/interfaces/IAccountDocument.js';
 import { TypeConverter } from '@btc-vision/motoswapcommon';
+import { IAccountDocument } from '../documents/interfaces/IAccountDocument.js';
+import { BaseModel } from './BaseModel.js';
 
 export class Account extends BaseModel {
     public account: string;
@@ -11,8 +11,7 @@ export class Account extends BaseModel {
     public stake: bigint;
 
     constructor(readonly accountDocument: IAccountDocument) {
-        super(accountDocument._id,
-            accountDocument.version);
+        super(accountDocument._id, accountDocument.version);
 
         this.account = accountDocument.account;
         this.ticker = accountDocument.ticker;

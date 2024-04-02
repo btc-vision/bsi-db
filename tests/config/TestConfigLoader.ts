@@ -1,7 +1,7 @@
-import { ConfigBase, ConfigManager, IConfigBase, IConfig } from '@btc-vision/motoswapcommon';
+import { ConfigManager, IConfigBase } from '@btc-vision/motoswapcommon';
 import { TestConfig } from './TestConfig';
 
-export class TestConfigLoader extends ConfigManager<IConfigBase>{
+export class TestConfigLoader extends ConfigManager<IConfigBase> {
     constructor(fullFileName: string) {
         super(fullFileName);
     }

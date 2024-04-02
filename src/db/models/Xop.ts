@@ -1,5 +1,10 @@
+import {
+    IMoveObject,
+    IXopDocument,
+    IXParamsObject,
+    IXTargetObject,
+} from '../documents/interfaces/IXopDocument.js';
 import { BaseModel } from './BaseModel.js';
-import { IMoveObject, IXopDocument, IXParamsObject, IXTargetObject } from '../documents/interfaces/IXopDocument.js';
 
 export class XTargetObject {
     public type: string;

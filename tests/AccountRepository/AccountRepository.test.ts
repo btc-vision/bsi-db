@@ -1,13 +1,13 @@
 import 'jest';
-import { AccountRepository } from '../../src/db/repositories/AccountRepository.js'
-import { ObjectId, Filter, Sort } from 'mongodb';
+import { DataAccessError, TypeConverter } from '@btc-vision/motoswapcommon';
+import { Filter, ObjectId, Sort } from 'mongodb';
+import { DBConstants } from '../../src/db/DBConstants.js';
 import { ConfigurableDBManager } from '../../src/db/DBManager.js';
 import { IAccountDocument } from '../../src/db/documents/interfaces/IAccountDocument.js';
-import { TypeConverter, DataAccessError } from '@btc-vision/motoswapcommon';
+import { AccountRepository } from '../../src/db/repositories/AccountRepository.js';
 import { PagingQueryInfo } from '../../src/db/repositories/PagingQuery.js';
-import { DBTestHelper } from '../utils/DBTestHelper.js';
-import { DBConstants } from '../../src/db/DBConstants.js';
 import { Config } from '../config/Config.js';
+import { DBTestHelper } from '../utils/DBTestHelper.js';
 
 describe('AccountRepository Integration Tests', () => {
     const DBManagerInstance = new ConfigurableDBManager(Config);
@@ -15,10 +15,9 @@ describe('AccountRepository Integration Tests', () => {
     beforeAll(async () => {
         await DBManagerInstance.setup(Config.DATABASE.CONNECTION_TYPE);
         await DBManagerInstance.connect();
-        await DBTestHelper.setupDatabaseForTests(DBManagerInstance.db!,
-            __dirname);
+        await DBTestHelper.setupDatabaseForTests(DBManagerInstance.db!, __dirname);
         process.env = {
-            TEST_JS: '1'
+            TEST_JS: '1',
         };
     }, 20000);
 
@@ -57,7 +56,7 @@ describe('AccountRepository Integration Tests', () => {
                 mint: TypeConverter.numberToDecimal128(0),
                 stake: TypeConverter.numberToDecimal128(0),
                 burn: TypeConverter.numberToDecimal128(0),
-                version: 1
+                version: 1,
             };
 
             const result = await repo.delete(document);
@@ -77,11 +76,10 @@ describe('AccountRepository Integration Tests', () => {
                 mint: TypeConverter.numberToDecimal128(0),
                 stake: TypeConverter.numberToDecimal128(0),
                 burn: TypeConverter.numberToDecimal128(0),
-                version: 1
+                version: 1,
             };
 
-            const result = await repo.delete(document);;
-
+            const result = await repo.delete(document);
             expect(result).toBe(false);
         });
     });
@@ -98,8 +96,8 @@ describe('AccountRepository Integration Tests', () => {
         test('getAll should return all documents matching single criteria', async () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
 
-            const criteria : Partial<Filter<IAccountDocument>>  = {
-                ticker: 'BTC'
+            const criteria: Partial<Filter<IAccountDocument>> = {
+                ticker: 'BTC',
             };
 
             const documents = await repo.getAll(criteria);
@@ -112,7 +110,7 @@ describe('AccountRepository Integration Tests', () => {
 
             const criteria: Partial<Filter<IAccountDocument>> = {
                 ticker: 'BTC',
-                amount: { $gt: TypeConverter.numberToDecimal128(1000) }
+                amount: { $gt: TypeConverter.numberToDecimal128(1000) },
             };
 
             const documents = await repo.getAll(criteria);
@@ -122,14 +120,15 @@ describe('AccountRepository Integration Tests', () => {
 
         test('getAll should return all documents matching id criteria', async () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
-            
+
             const criteria: Partial<Filter<IAccountDocument>> = {
                 _id: {
-                    $in: [new ObjectId('65ff1f6c0e0dd5a32089fc22'),
+                    $in: [
+                        new ObjectId('65ff1f6c0e0dd5a32089fc22'),
                         new ObjectId('65ff1f6c0e0dd5a32089fc25'),
-                        new ObjectId('000000000000000000000000')
-                    ]
-                }
+                        new ObjectId('000000000000000000000000'),
+                    ],
+                },
             };
 
             const documents = await repo.getAll(criteria);
@@ -171,7 +170,7 @@ describe('AccountRepository Integration Tests', () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
 
             const criteria: Partial<Filter<IAccountDocument>> = {
-                ticker: 'BTC'
+                ticker: 'BTC',
             };
 
             const count = await repo.getCount(criteria);
@@ -185,10 +184,7 @@ describe('AccountRepository Integration Tests', () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
 
             const criteria: Partial<Filter<IAccountDocument>> = {
-                $and: [
-                    { ticker: 'BTC' },
-                    { account: '456'}
-                ]
+                $and: [{ ticker: 'BTC' }, { account: '456' }],
             };
 
             const document = await repo.queryOne(criteria);
@@ -202,10 +198,7 @@ describe('AccountRepository Integration Tests', () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
 
             const criteria: Partial<Filter<IAccountDocument>> = {
-                $and: [
-                    { ticker: 'ABC' },
-                    { account: '000' }
-                ]
+                $and: [{ ticker: 'ABC' }, { account: '000' }],
             };
 
             const document = await repo.queryOne(criteria);
@@ -219,10 +212,7 @@ describe('AccountRepository Integration Tests', () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
 
             const criteria: Partial<Filter<IAccountDocument>> = {
-                $or: [
-                    { ticker: 'BTC' },
-                    { account: '123' }
-                ]
+                $or: [{ ticker: 'BTC' }, { account: '123' }],
             };
 
             const documents = await repo.queryMany(criteria);
@@ -236,10 +226,7 @@ describe('AccountRepository Integration Tests', () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
 
             const criteria: Partial<Filter<IAccountDocument>> = {
-                $or: [
-                    { ticker: 'ABC' },
-                    { account: '000' }
-                ]
+                $or: [{ ticker: 'ABC' }, { account: '000' }],
             };
 
             const documents = await repo.queryMany(criteria);
@@ -253,7 +240,7 @@ describe('AccountRepository Integration Tests', () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
 
             const criteria: Partial<Filter<IAccountDocument>> = {
-                ticker: 'BTC'
+                ticker: 'BTC',
             };
 
             const sort: Sort = {
@@ -263,17 +250,15 @@ describe('AccountRepository Integration Tests', () => {
 
             const pagingInfo: PagingQueryInfo = {
                 pageNumber: 1,
-                pageSize: 2
+                pageSize: 2,
             };
 
             const pagingInfo2: PagingQueryInfo = {
                 pageNumber: 2,
-                pageSize: 2
+                pageSize: 2,
             };
 
-            const pagingResult = await repo.queryManyAndSortPaged(criteria,
-                sort,
-                pagingInfo);
+            const pagingResult = await repo.queryManyAndSortPaged(criteria, sort, pagingInfo);
 
             expect(pagingResult.count).toBe(3);
             expect(pagingResult.pageNumber).toBe(1);
@@ -282,9 +267,7 @@ describe('AccountRepository Integration Tests', () => {
             expect(pagingResult.results[0].account).toBe('123');
             expect(pagingResult.results[1].account).toBe('456');
 
-            const pagingResult2 = await repo.queryManyAndSortPaged(criteria,
-                sort,
-                pagingInfo2);
+            const pagingResult2 = await repo.queryManyAndSortPaged(criteria, sort, pagingInfo2);
 
             expect(pagingResult2.count).toBe(3);
             expect(pagingResult2.pageNumber).toBe(2);
@@ -297,10 +280,7 @@ describe('AccountRepository Integration Tests', () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
 
             const criteria: Partial<Filter<IAccountDocument>> = {
-                $or: [
-                    { ticker: 'ABC' },
-                    { account: '000' }
-                ]
+                $or: [{ ticker: 'ABC' }, { account: '000' }],
             };
 
             const sort: Sort = {
@@ -310,12 +290,10 @@ describe('AccountRepository Integration Tests', () => {
 
             const pagingInfo: PagingQueryInfo = {
                 pageNumber: 1,
-                pageSize: 2
+                pageSize: 2,
             };
 
-            const pagingResult = await repo.queryManyAndSortPaged(criteria,
-                sort,
-                pagingInfo);
+            const pagingResult = await repo.queryManyAndSortPaged(criteria, sort, pagingInfo);
 
             expect(pagingResult.count).toBe(0);
             expect(pagingResult.pageNumber).toBe(1);
@@ -329,7 +307,7 @@ describe('AccountRepository Integration Tests', () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
 
             const criteria: Partial<Filter<IAccountDocument>> = {
-                ticker: 'BTC'
+                ticker: 'BTC',
             };
 
             const sort: Sort = {
@@ -337,8 +315,7 @@ describe('AccountRepository Integration Tests', () => {
                 amount: -1,
             };
 
-            const documents = await repo.queryManyAndSort(criteria,
-                sort);
+            const documents = await repo.queryManyAndSort(criteria, sort);
 
             expect(documents.length).toBe(3);
             expect(documents[0].account).toBe('123');
@@ -350,10 +327,7 @@ describe('AccountRepository Integration Tests', () => {
             const repo = new AccountRepository(DBManagerInstance.db!);
 
             const criteria: Partial<Filter<IAccountDocument>> = {
-                $or: [
-                    { ticker: 'ABC' },
-                    { account: '000' }
-                ]
+                $or: [{ ticker: 'ABC' }, { account: '000' }],
             };
 
             const sort: Sort = {
@@ -361,8 +335,7 @@ describe('AccountRepository Integration Tests', () => {
                 amount: -1,
             };
 
-            const documents = await repo.queryManyAndSort(criteria,
-                sort);
+            const documents = await repo.queryManyAndSort(criteria, sort);
 
             expect(documents.length).toBe(0);
         });
@@ -381,11 +354,11 @@ describe('AccountRepository Integration Tests', () => {
                 lock: TypeConverter.numberToDecimal128(0),
                 mint: TypeConverter.numberToDecimal128(0),
                 stake: TypeConverter.numberToDecimal128(0),
-                ticker: 'TCK1'
+                ticker: 'TCK1',
             };
 
             await repo.save(document);
-            
+
             const savedDocument = await repo.getById(document._id);
 
             expect(savedDocument).toBeDefined();
@@ -409,7 +382,7 @@ describe('AccountRepository Integration Tests', () => {
                     stake: document.stake,
                     ticker: document.ticker,
                     version: document.version,
-                    _id: document._id
+                    _id: document._id,
                 };
 
                 await repo.save(updateDocument);
@@ -422,7 +395,9 @@ describe('AccountRepository Integration Tests', () => {
 
                 if (document2 !== null) {
                     expect(document2.version).toBe(currentVersion + 1);
-                    expect(document2.lock.toString()).toBe(TypeConverter.numberToDecimal128(999).toString());
+                    expect(document2.lock.toString()).toBe(
+                        TypeConverter.numberToDecimal128(999).toString(),
+                    );
                 }
             }
         });
@@ -442,7 +417,7 @@ describe('AccountRepository Integration Tests', () => {
                     stake: document.stake,
                     ticker: document.ticker,
                     version: 1,
-                    _id: document._id
+                    _id: document._id,
                 };
 
                 await expect(repo.save(updateDocument)).rejects.toThrow(DataAccessError);
@@ -464,9 +439,7 @@ describe('AccountRepository Integration Tests', () => {
                     stake: TypeConverter.numberToDecimal128(4444),
                 };
 
-                await repo.updatePartial(document._id,
-                    currentVersion,
-                    updateDocument);
+                await repo.updatePartial(document._id, currentVersion, updateDocument);
 
                 expect(updateDocument.version).toBe(currentVersion + 1);
 
@@ -476,8 +449,12 @@ describe('AccountRepository Integration Tests', () => {
 
                 if (document2 !== null) {
                     expect(document2.version).toBe(currentVersion + 1);
-                    expect(document2.mint.toString()).toBe(TypeConverter.numberToDecimal128(3333).toString());
-                    expect(document2.stake.toString()).toBe(TypeConverter.numberToDecimal128(4444).toString());
+                    expect(document2.mint.toString()).toBe(
+                        TypeConverter.numberToDecimal128(3333).toString(),
+                    );
+                    expect(document2.stake.toString()).toBe(
+                        TypeConverter.numberToDecimal128(4444).toString(),
+                    );
                 }
             }
         });
@@ -490,9 +467,9 @@ describe('AccountRepository Integration Tests', () => {
                 stake: TypeConverter.numberToDecimal128(4444),
             };
 
-            await expect(repo.updatePartial(new ObjectId(),
-                0,
-                updateDocument)).rejects.toThrow(DataAccessError);
+            await expect(repo.updatePartial(new ObjectId(), 0, updateDocument)).rejects.toThrow(
+                DataAccessError,
+            );
         });
 
         test('updatePartial an existing document with an outdated version, should throw concurency error', async () => {
@@ -507,9 +484,9 @@ describe('AccountRepository Integration Tests', () => {
                     stake: TypeConverter.numberToDecimal128(4444),
                 };
 
-                await expect(repo.updatePartial(document._id,
-                    0,
-                    updateDocument)).rejects.toThrow(DataAccessError);
+                await expect(repo.updatePartial(document._id, 0, updateDocument)).rejects.toThrow(
+                    DataAccessError,
+                );
             }
         });
     });
@@ -531,8 +508,10 @@ describe('AccountRepository Integration Tests', () => {
                     const repo = new AccountRepository(db);
                     const repo2 = new AccountRepository(DBManagerInstance.db!);
 
-                    const result = await repo.deleteById(new ObjectId('65ff1f6c0e0dd5a32089fc28'),
-                        session);
+                    const result = await repo.deleteById(
+                        new ObjectId('65ff1f6c0e0dd5a32089fc28'),
+                        session,
+                    );
 
                     expect(result).toBe(true);
 
@@ -566,15 +545,17 @@ describe('AccountRepository Integration Tests', () => {
                     const repo = new AccountRepository(db);
                     const repo2 = new AccountRepository(DBManagerInstance.db!);
 
-                    const result = await repo.deleteById(new ObjectId('65ff1f6c0e0dd5a32089fc28'),
-                        session);
+                    const result = await repo.deleteById(
+                        new ObjectId('65ff1f6c0e0dd5a32089fc28'),
+                        session,
+                    );
 
                     expect(result).toBe(true);
 
                     await session.commitTransaction();
 
                     const document = await repo2.getById(new ObjectId('65ff1f6c0e0dd5a32089fc28'));
-                    
+
                     expect(document).toBeNull();
                 } finally {
                     session.endSession();
@@ -585,4 +566,3 @@ describe('AccountRepository Integration Tests', () => {
         });
     });
 });
-

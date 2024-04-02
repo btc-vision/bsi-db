@@ -1,6 +1,5 @@
-import { BaseModel } from './BaseModel.js';
 import { IBlockDocument } from '../documents/interfaces/IBlockDocument.js';
-
+import { BaseModel } from './BaseModel.js';
 
 export class Block extends BaseModel {
     public height: number;
@@ -13,8 +12,7 @@ export class Block extends BaseModel {
     public time: number;
 
     constructor(readonly blockDocument: IBlockDocument) {
-        super(blockDocument._id,
-            blockDocument.version);
+        super(blockDocument._id, blockDocument.version);
 
         this.height = blockDocument.height;
         this.hash = blockDocument.hash;

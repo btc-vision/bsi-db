@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
-import { IBaseDocument } from '../documents/interfaces/IBaseDocument';
 import { DBConstants } from '../DBConstants';
+import { IBaseDocument } from '../documents/interfaces/IBaseDocument';
 
 export abstract class BaseModel {
     public _id: ObjectId;

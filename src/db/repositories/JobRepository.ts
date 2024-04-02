@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
-import { BaseRepository } from './BaseRepository.js';
 import { IJobDocument } from '../documents/interfaces/IJobDocument.js';
+import { BaseRepository } from './BaseRepository.js';
 
 export class JobRepository extends BaseRepository<IJobDocument> {
     public moduleName: string = 'JobRepository';

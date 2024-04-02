@@ -1,11 +1,11 @@
-import { BaseModel } from './BaseModel.js';
-import { IXSynthDocument } from '../documents/interfaces/IXSynthDocument.js';
 import { ObjectId } from 'mongodb';
+import { IXSynthDocument } from '../documents/interfaces/IXSynthDocument.js';
+import { BaseModel } from './BaseModel.js';
 
 export class XSynth extends BaseModel {
     public xop: ObjectId;
     public h: number; // !!! TODO: Junkfood: rename fielld
-    public n: number;// !!! TODO: Junkfood: rename fielld
+    public n: number; // !!! TODO: Junkfood: rename fielld
     public xid: string;
     public xcom: string;
     public account: string;

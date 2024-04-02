@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
-import { BaseRepository } from './BaseRepository.js';
 import { ICBRCTransferDocument } from '../documents/interfaces/ICBRCTransferDocument.js';
+import { BaseRepository } from './BaseRepository.js';
 
 export class CBRCTransferRepository extends BaseRepository<ICBRCTransferDocument> {
     public moduleName: string = 'CBRCTransferRepository';

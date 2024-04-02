@@ -1,5 +1,5 @@
-import { BaseModel } from './BaseModel.js';
 import { IJobDocument } from '../documents/interfaces/IJobDocument.js';
+import { BaseModel } from './BaseModel.js';
 
 export class Job extends BaseModel {
     public n: number; // !!! TODO: Junkfood: rename fielld

@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
-import { BaseRepository } from './BaseRepository.js';
 import { ICBRCDistributionDocument } from '../documents/interfaces/ICBRCDistributionDocument.js';
+import { BaseRepository } from './BaseRepository.js';
 
 export class CBRCDistributionRepository extends BaseRepository<ICBRCDistributionDocument> {
     public moduleName: string = 'CBRCDistributionRepository';

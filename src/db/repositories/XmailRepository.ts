@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
-import { BaseRepository } from './BaseRepository.js';
 import { IXmailDocument } from '../documents/interfaces/IXmailDocument.js';
+import { BaseRepository } from './BaseRepository.js';
 
 export class XmailRepository extends BaseRepository<IXmailDocument> {
     public moduleName: string = 'XmailRepository';

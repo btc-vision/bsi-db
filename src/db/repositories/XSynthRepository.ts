@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
-import { BaseRepository } from './BaseRepository.js';
 import { IXSynthDocument } from '../documents/interfaces/IXSynthDocument.js';
+import { BaseRepository } from './BaseRepository.js';
 
 export class XSynthRepository extends BaseRepository<IXSynthDocument> {
     public moduleName: string = 'XSynthRepository';

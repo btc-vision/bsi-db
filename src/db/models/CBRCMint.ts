@@ -1,7 +1,7 @@
-import { ObjectId } from 'mongodb';
-import { BaseModel } from './BaseModel.js';
 import { TypeConverter } from '@btc-vision/motoswapcommon';
+import { ObjectId } from 'mongodb';
 import { ICBRCMintDocument } from '../documents/interfaces/ICBRCMintDocument.js';
+import { BaseModel } from './BaseModel.js';
 
 export class CBRCMint extends BaseModel {
     public xop: ObjectId;
@@ -10,8 +10,7 @@ export class CBRCMint extends BaseModel {
     public last: boolean;
 
     constructor(readonly cbrcMintDocument: ICBRCMintDocument) {
-        super(cbrcMintDocument._id,
-            cbrcMintDocument.version);
+        super(cbrcMintDocument._id, cbrcMintDocument.version);
         this.xop = cbrcMintDocument.xop;
         this.ticker = cbrcMintDocument.ticker;
         this.amount = TypeConverter.decimal128ToBigint(cbrcMintDocument.amount);
@@ -31,7 +30,3 @@ export class CBRCMint extends BaseModel {
         return document;
     }
 }
-
-
-
-

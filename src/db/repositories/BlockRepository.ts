@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
-import { BaseRepository } from './BaseRepository.js';
 import { IBlockDocument } from '../documents/interfaces/IBlockDocument.js';
+import { BaseRepository } from './BaseRepository.js';
 
 export class BlockRepository extends BaseRepository<IBlockDocument> {
     public moduleName: string = 'BlockRepository';

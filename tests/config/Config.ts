@@ -1,6 +1,6 @@
-import { TestConfigLoader } from './TestConfigLoader.js';
-import { TestConfig } from './TestConfig.js';
 import path from 'path';
+import { TestConfig } from './TestConfig.js';
+import { TestConfigLoader } from './TestConfigLoader.js';
 
 const configPath = path.join(__dirname, '../../', 'tests/config/motoswap.unit.test.conf');
 

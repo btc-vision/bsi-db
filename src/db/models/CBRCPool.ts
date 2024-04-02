@@ -1,7 +1,7 @@
-import { ObjectId } from 'mongodb';
-import { BaseModel } from './BaseModel.js';
 import { TypeConverter } from '@btc-vision/motoswapcommon';
+import { ObjectId } from 'mongodb';
 import { ICBRCPoolDocument } from '../documents/interfaces/ICBRCPoolDocument.js';
+import { BaseModel } from './BaseModel.js';
 
 export class CBRCPool extends BaseModel {
     public xop: ObjectId;
@@ -16,8 +16,7 @@ export class CBRCPool extends BaseModel {
     public totalShares: bigint;
 
     constructor(public cbrcPoolDocument: ICBRCPoolDocument) {
-        super(cbrcPoolDocument._id,
-            cbrcPoolDocument.version);
+        super(cbrcPoolDocument._id, cbrcPoolDocument.version);
         this.xop = cbrcPoolDocument.xop;
         this.type = cbrcPoolDocument.type;
         this.xid = cbrcPoolDocument.xid;
@@ -49,7 +48,3 @@ export class CBRCPool extends BaseModel {
         return document;
     }
 }
-
-
-
-

@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
-import { BaseRepository } from './BaseRepository.js';
 import { IAccountHistoryDocument } from '../documents/interfaces/IAccountHistoryDocument.js';
+import { BaseRepository } from './BaseRepository.js';
 
 export class AccountHistoryRepository extends BaseRepository<IAccountHistoryDocument> {
     public moduleName: string = 'AccountHistoryRepository';

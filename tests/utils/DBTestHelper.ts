@@ -1,5 +1,5 @@
-import { Db, ObjectId } from 'mongodb';
 import * as fs from 'fs';
+import { Db, ObjectId } from 'mongodb';
 import * as path from 'path';
 
 export class DBTestHelper {
@@ -10,14 +10,12 @@ export class DBTestHelper {
                     reject(err);
                     return;
                 }
-                resolve(files.map(file => path.basename(file)));
+                resolve(files.map((file) => path.basename(file)));
             });
         });
     }
 
-    public static async setupDatabaseForTests(db: Db,
-        testDirectory: string) {
-
+    public static async setupDatabaseForTests(db: Db, testDirectory: string) {
         const directoryPath = path.join(testDirectory, 'data');
         const filenames: string[] = await DBTestHelper.readFileNames(directoryPath);
 
@@ -25,11 +23,11 @@ export class DBTestHelper {
             const file = filenames[i];
             console.log(`Reading: ${file}`);
 
-            const data = fs.readFileSync(path.join(directoryPath, file), "utf-8");
+            const data = fs.readFileSync(path.join(directoryPath, file), 'utf-8');
 
             const documents: any[] = JSON.parse(data);
 
-            const updatedDocuments = documents.map(doc => ({
+            const updatedDocuments = documents.map((doc) => ({
                 ...doc,
                 _id: new ObjectId(doc._id),
             }));
