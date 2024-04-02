@@ -522,10 +522,10 @@ describe('AccountRepository Integration Tests', () => {
                     expect(document).toBeDefined();
                     expect(document).not.toBeNull();
                 } finally {
-                    session.endSession();
+                    await session.endSession();
                 }
             } finally {
-                mongoClient.close();
+                await mongoClient.close();
             }
         });
 
@@ -558,10 +558,10 @@ describe('AccountRepository Integration Tests', () => {
 
                     expect(document).toBeNull();
                 } finally {
-                    session.endSession();
+                    await session.endSession();
                 }
             } finally {
-                mongoClient.close();
+                await mongoClient.close();
             }
         });
     });
