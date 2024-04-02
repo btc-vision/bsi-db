@@ -255,6 +255,46 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
         }
     }
 
+    public async queryOnePartial(
+        criteria: Partial<Filter<TDocument>>,
+        currentSession?: ClientSession,
+    ): Promise<TDocument | null> {
+        try {
+            const collection = this.getCollection();
+            const options: FindOptions = this.getOptions(currentSession);
+
+            return (await collection.findOne(criteria, options)) as TDocument;
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new DataAccessError(error.message);
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public async updateOne(
+        query: Partial<Filter<TDocument>>,
+        document: Partial<TDocument>,
+        currentSession?: ClientSession,
+    ): Promise<void> {
+        try {
+            const collection = this.getCollection();
+            const options: UpdateOptions = {
+                ...this.getOptions(currentSession),
+                upsert: true,
+            };
+
+            await collection.updateOne(query, { $set: document }, options);
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new DataAccessError(error.message, DataAccessErrorType.Unknown);
+            } else {
+                throw error;
+            }
+        }
+    }
+
     public async updatePartial(
         id: ObjectId,
         version: number,
