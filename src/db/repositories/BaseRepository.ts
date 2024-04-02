@@ -341,6 +341,7 @@ export abstract class BaseRepository<TDocument extends IBaseDocument> extends Lo
 
         if (currentSession) {
             options.session = currentSession;
+            options.readPreference = 'primary';
         }
 
         return options;
