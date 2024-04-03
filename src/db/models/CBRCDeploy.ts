@@ -1,11 +1,11 @@
 import { TickerHelper } from '@btc-vision/motoswapcommon';
 import { Decimal128, ObjectId } from 'mongodb';
 import { ICBRCDeployDocument } from '../documents/interfaces/ICBRCDeployDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
 export declare type CBRCDeployMintOps = [number, number];
 
-export class CBRCDeploy extends BaseModel {
+export class CBRCDeploy extends BaseModelWithId {
     public xop: ObjectId;
     public ticker: string;
     public hexcode: string;
@@ -36,6 +36,10 @@ export class CBRCDeploy extends BaseModel {
     }
 
     public override toDocument(): Readonly<ICBRCDeployDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<ICBRCDeployDocument> {
         const document: ICBRCDeployDocument = {
             xop: this.xop,
             ticker: this.ticker,

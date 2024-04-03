@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
-import { IBaseDocument } from './IBaseDocument.js';
+import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
 
-export interface IXSynthDocument extends IBaseDocument {
+export interface IXSynthDocument extends IBaseDocumentWithId {
     readonly xop: ObjectId;
     readonly h: number; // !!! TODO: Junkfood: rename fielld
     readonly n: number; // !!! TODO: Junkfood: rename fielld

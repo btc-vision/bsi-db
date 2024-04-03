@@ -4,7 +4,7 @@ import {
     IXParamsObject,
     IXTargetObject,
 } from '../documents/interfaces/IXopDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
 export class XTargetObject {
     public type: string;
@@ -28,7 +28,7 @@ export class MoveObject {
     }
 }
 
-export class Xop extends BaseModel {
+export class Xop extends BaseModelWithId {
     public inscriptionId: string;
     public offset: number;
     public height: number;
@@ -76,6 +76,10 @@ export class Xop extends BaseModel {
     }
 
     public override toDocument(): Readonly<IXopDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<IXopDocument> {
         const params: IXParamsObject = {};
 
         this.xparams.forEach((key: string, value: string) => {

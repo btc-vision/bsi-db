@@ -1,7 +1,7 @@
 import { TypeConverter } from '@btc-vision/motoswapcommon';
 import { ObjectId } from 'mongodb';
 import { IXmailDocument, IXmailDocumentTargets } from '../documents/interfaces/IXmailDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
 export class XmailDocumentTargets {
     public account: string;
@@ -19,7 +19,7 @@ export class XmailDocumentTargets {
     }
 }
 
-export class Xmail extends BaseModel {
+export class Xmail extends BaseModelWithId {
     public xop: ObjectId;
     public xcom: string;
     public ticker: string;
@@ -49,6 +49,10 @@ export class Xmail extends BaseModel {
     }
 
     public override toDocument(): Readonly<IXmailDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<IXmailDocument> {
         const document: IXmailDocument = {
             xop: this.xop,
             xcom: this.xcom,

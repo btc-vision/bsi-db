@@ -1,7 +1,7 @@
 import { Decimal128, ObjectId } from 'mongodb';
-import { IBaseDocument } from './IBaseDocument.js';
+import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
 
-export interface ICBRCTransferDocument extends IBaseDocument {
+export interface ICBRCTransferDocument extends IBaseDocumentWithId {
     readonly xop: ObjectId;
     readonly ticker: string;
     readonly txid: string;

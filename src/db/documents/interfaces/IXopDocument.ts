@@ -1,4 +1,4 @@
-import { IBaseDocument } from './IBaseDocument.js';
+import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
 
 export interface IXTargetObject {
     // node or address
@@ -20,7 +20,7 @@ export interface IMoveObject {
     readonly toAccount: string;
 }
 
-export interface IXopDocument extends IBaseDocument {
+export interface IXopDocument extends IBaseDocumentWithId {
     /**
      * Inscription id
      */

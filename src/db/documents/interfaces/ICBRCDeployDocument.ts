@@ -1,9 +1,9 @@
 import { Decimal128, ObjectId } from 'mongodb';
-import { IBaseDocument } from './IBaseDocument.js';
+import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
 
 export declare type ICBRCDeployDocumentMintOps = [number, number];
 
-export interface ICBRCDeployDocument extends IBaseDocument {
+export interface ICBRCDeployDocument extends IBaseDocumentWithId {
     readonly xop: ObjectId;
 
     /**

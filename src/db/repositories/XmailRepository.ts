@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { IXmailDocument } from '../documents/interfaces/IXmailDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class XmailRepository extends BaseRepository<IXmailDocument> {
+export class XmailRepository extends BaseRepositoryWithId<IXmailDocument> {
     public moduleName: string = 'XmailRepository';
     public logColor: string = '#afeeee';
 
@@ -11,6 +11,6 @@ export class XmailRepository extends BaseRepository<IXmailDocument> {
     }
 
     protected override getCollection(): Collection<IXmailDocument> {
-        return this._db.collection('xmails');
+        return this._db.collection('XMails');
     }
 }

@@ -1,9 +1,9 @@
 import { TypeConverter } from '@btc-vision/motoswapcommon';
 import { ObjectId } from 'mongodb';
 import { ICBRCShareDocument } from '../documents/interfaces/ICBRCShareDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
-export class CBRCShare extends BaseModel {
+export class CBRCShare extends BaseModelWithId {
     public pool: ObjectId;
     public xid: string;
     public type: string;
@@ -32,6 +32,10 @@ export class CBRCShare extends BaseModel {
     }
 
     public override toDocument(): Readonly<ICBRCShareDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<ICBRCShareDocument> {
         const document: ICBRCShareDocument = {
             pool: this.pool,
             xid: this.xid,

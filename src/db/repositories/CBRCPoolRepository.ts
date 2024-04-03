@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { ICBRCPoolDocument } from '../documents/interfaces/ICBRCPoolDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class CBRCPoolRepository extends BaseRepository<ICBRCPoolDocument> {
+export class CBRCPoolRepository extends BaseRepositoryWithId<ICBRCPoolDocument> {
     public moduleName: string = 'CBRCPoolRepository';
     public logColor: string = '#afeeee';
 
@@ -11,6 +11,6 @@ export class CBRCPoolRepository extends BaseRepository<ICBRCPoolDocument> {
     }
 
     protected override getCollection(): Collection<ICBRCPoolDocument> {
-        return this._db.collection('pools');
+        return this._db.collection('Pools');
     }
 }

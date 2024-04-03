@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { IAccountHistoryDocument } from '../documents/interfaces/IAccountHistoryDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class AccountHistoryRepository extends BaseRepository<IAccountHistoryDocument> {
+export class AccountHistoryRepository extends BaseRepositoryWithId<IAccountHistoryDocument> {
     public moduleName: string = 'AccountHistoryRepository';
     public logColor: string = '#afeeee';
 
@@ -11,6 +11,6 @@ export class AccountHistoryRepository extends BaseRepository<IAccountHistoryDocu
     }
 
     protected override getCollection(): Collection<IAccountHistoryDocument> {
-        return this._db.collection('accountshistory');
+        return this._db.collection('AccountsHistory');
     }
 }

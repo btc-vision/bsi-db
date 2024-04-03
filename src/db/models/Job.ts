@@ -1,7 +1,7 @@
 import { IJobDocument } from '../documents/interfaces/IJobDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
-export class Job extends BaseModel {
+export class Job extends BaseModelWithId {
     public n: number; // !!! TODO: Junkfood: rename fielld
     public work: boolean;
     public done: boolean;
@@ -15,6 +15,10 @@ export class Job extends BaseModel {
     }
 
     public override toDocument(): Readonly<IJobDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<IJobDocument> {
         const document: IJobDocument = {
             n: this.n,
             work: this.work,

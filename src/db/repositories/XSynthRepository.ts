@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { IXSynthDocument } from '../documents/interfaces/IXSynthDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class XSynthRepository extends BaseRepository<IXSynthDocument> {
+export class XSynthRepository extends BaseRepositoryWithId<IXSynthDocument> {
     public moduleName: string = 'XSynthRepository';
     public logColor: string = '#afeeee';
 
@@ -11,6 +11,6 @@ export class XSynthRepository extends BaseRepository<IXSynthDocument> {
     }
 
     protected override getCollection(): Collection<IXSynthDocument> {
-        return this._db.collection('xsynths');
+        return this._db.collection('XSynths');
     }
 }

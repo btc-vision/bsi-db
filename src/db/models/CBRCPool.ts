@@ -1,9 +1,9 @@
 import { TypeConverter } from '@btc-vision/motoswapcommon';
 import { ObjectId } from 'mongodb';
 import { ICBRCPoolDocument } from '../documents/interfaces/ICBRCPoolDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
-export class CBRCPool extends BaseModel {
+export class CBRCPool extends BaseModelWithId {
     public xop: ObjectId;
     public type: string;
     public xid: string;
@@ -30,6 +30,10 @@ export class CBRCPool extends BaseModel {
     }
 
     public override toDocument(): Readonly<ICBRCPoolDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<ICBRCPoolDocument> {
         const document: ICBRCPoolDocument = {
             xop: this.xop,
             type: this.type,

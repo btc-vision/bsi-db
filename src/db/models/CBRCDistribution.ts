@@ -4,7 +4,7 @@ import {
     ICBRCDistributionDocument,
     ICBRCDistributionDocumentBox,
 } from '../documents/interfaces/ICBRCDistributionDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
 export class CBRCDistributionBox {
     public ticker: string;
@@ -16,7 +16,7 @@ export class CBRCDistributionBox {
     }
 }
 
-export class CBRCDistribution extends BaseModel {
+export class CBRCDistribution extends BaseModelWithId {
     public previouDistribution: ObjectId;
     public poolId: string;
     public box: CBRCDistributionBox[];
@@ -39,6 +39,10 @@ export class CBRCDistribution extends BaseModel {
     }
 
     public override toDocument(): Readonly<ICBRCDistributionDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<ICBRCDistributionDocument> {
         const document: ICBRCDistributionDocument = {
             previouDistribution: this.previouDistribution,
             poolId: this.poolId,

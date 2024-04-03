@@ -1,6 +1,6 @@
-import { IBaseDocument } from './IBaseDocument.js';
+import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
 
-export interface IBlockDocument extends IBaseDocument {
+export interface IBlockDocument extends IBaseDocumentWithId {
     readonly height: number;
     readonly hash: string;
     readonly ntx: number;

@@ -1,5 +1,5 @@
 import { Decimal128, ObjectId } from 'mongodb';
-import { IBaseDocument } from './IBaseDocument.js';
+import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
 
 export interface IXmailDocumentTargets {
     account: string;
@@ -9,7 +9,7 @@ export interface IXmailDocumentTargets {
     errCode?: string;
 }
 
-export interface IXmailDocument extends IBaseDocument {
+export interface IXmailDocument extends IBaseDocumentWithId {
     xop: ObjectId;
     xcom: string;
     ticker: string;

@@ -1,8 +1,7 @@
-import { TypeConverter } from '@btc-vision/motoswapcommon';
+import { TypeConverter, BaseModelWithId } from '@btc-vision/motoswapcommon';
 import { IAccountDocument } from '../documents/interfaces/IAccountDocument.js';
-import { BaseModel } from './BaseModel.js';
 
-export class Account extends BaseModel {
+export class Account extends BaseModelWithId {
     public account: string;
     public ticker: string;
     public amount: bigint;
@@ -22,6 +21,10 @@ export class Account extends BaseModel {
     }
 
     public override toDocument(): Readonly<IAccountDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<IAccountDocument> {
         const document: IAccountDocument = {
             account: this.account,
             ticker: this.ticker,

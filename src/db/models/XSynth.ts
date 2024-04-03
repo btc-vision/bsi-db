@@ -1,8 +1,8 @@
 import { ObjectId } from 'mongodb';
 import { IXSynthDocument } from '../documents/interfaces/IXSynthDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
-export class XSynth extends BaseModel {
+export class XSynth extends BaseModelWithId {
     public xop: ObjectId;
     public h: number; // !!! TODO: Junkfood: rename fielld
     public n: number; // !!! TODO: Junkfood: rename fielld
@@ -30,6 +30,10 @@ export class XSynth extends BaseModel {
     }
 
     public override toDocument(): Readonly<IXSynthDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<IXSynthDocument> {
         const document: IXSynthDocument = {
             xop: this.xop,
             h: this.h,

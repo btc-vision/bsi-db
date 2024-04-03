@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { IBlockDocument } from '../documents/interfaces/IBlockDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class BlockRepository extends BaseRepository<IBlockDocument> {
+export class BlockRepository extends BaseRepositoryWithId<IBlockDocument> {
     public moduleName: string = 'BlockRepository';
     public logColor: string = '#afeeee';
 
@@ -11,6 +11,6 @@ export class BlockRepository extends BaseRepository<IBlockDocument> {
     }
 
     protected override getCollection(): Collection<IBlockDocument> {
-        return this._db.collection('blocks');
+        return this._db.collection('Blocks');
     }
 }

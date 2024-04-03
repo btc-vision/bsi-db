@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { ICBRCTransferDocument } from '../documents/interfaces/ICBRCTransferDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class CBRCTransferRepository extends BaseRepository<ICBRCTransferDocument> {
+export class CBRCTransferRepository extends BaseRepositoryWithId<ICBRCTransferDocument> {
     public moduleName: string = 'CBRCTransferRepository';
     public logColor: string = '#afeeee';
 
@@ -11,6 +11,6 @@ export class CBRCTransferRepository extends BaseRepository<ICBRCTransferDocument
     }
 
     protected override getCollection(): Collection<ICBRCTransferDocument> {
-        return this._db.collection('transfers');
+        return this._db.collection('Transfers');
     }
 }

@@ -1,7 +1,7 @@
 import { Decimal128 } from 'mongodb';
-import { IBaseDocument } from './IBaseDocument.js';
+import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
 
-export interface IAccountDocument extends IBaseDocument {
+export interface IAccountDocument extends IBaseDocumentWithId {
     /**
      * Account ID
      * Can be:

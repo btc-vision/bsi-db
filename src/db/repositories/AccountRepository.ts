@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { IAccountDocument } from '../documents/interfaces/IAccountDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class AccountRepository extends BaseRepository<IAccountDocument> {
+export class AccountRepository extends BaseRepositoryWithId<IAccountDocument> {
     public moduleName: string = 'AccountRepository';
     public logColor: string = '#afeeee';
 

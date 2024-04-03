@@ -1,12 +1,12 @@
 import { Decimal128, ObjectId } from 'mongodb';
-import { IBaseDocument } from './IBaseDocument.js';
+import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
 
 export interface ICBRCDistributionDocumentBox {
     ticker: string;
     amount: Decimal128;
 }
 
-export interface ICBRCDistributionDocument extends IBaseDocument {
+export interface ICBRCDistributionDocument extends IBaseDocumentWithId {
     readonly previouDistribution: ObjectId;
     readonly poolId: string;
     readonly box: ICBRCDistributionDocumentBox[];

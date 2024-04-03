@@ -1,9 +1,9 @@
 import { TypeConverter } from '@btc-vision/motoswapcommon';
 import { ObjectId } from 'mongodb';
 import { IAccountHistoryDocument } from '../documents/interfaces/IAccountHistoryDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
-export class AccountHistory extends BaseModel {
+export class AccountHistory extends BaseModelWithId {
     public xop: ObjectId;
     public account: ObjectId;
     public source: string;
@@ -19,6 +19,10 @@ export class AccountHistory extends BaseModel {
     }
 
     public override toDocument(): Readonly<IAccountHistoryDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<IAccountHistoryDocument> {
         const document: IAccountHistoryDocument = {
             account: this.account,
             amount: TypeConverter.bigintToDecimal128(this.amount),

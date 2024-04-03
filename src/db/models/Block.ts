@@ -1,7 +1,7 @@
 import { IBlockDocument } from '../documents/interfaces/IBlockDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
-export class Block extends BaseModel {
+export class Block extends BaseModelWithId {
     public height: number;
     public hash: string;
     public ntx: number;
@@ -25,6 +25,10 @@ export class Block extends BaseModel {
     }
 
     public override toDocument(): Readonly<IBlockDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<IBlockDocument> {
         const document: IBlockDocument = {
             height: this.height,
             hash: this.hash,

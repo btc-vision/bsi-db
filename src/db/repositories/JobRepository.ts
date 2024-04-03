@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { IJobDocument } from '../documents/interfaces/IJobDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class JobRepository extends BaseRepository<IJobDocument> {
+export class JobRepository extends BaseRepositoryWithId<IJobDocument> {
     public moduleName: string = 'JobRepository';
     public logColor: string = '#afeeee';
 
@@ -11,6 +11,6 @@ export class JobRepository extends BaseRepository<IJobDocument> {
     }
 
     protected override getCollection(): Collection<IJobDocument> {
-        return this._db.collection('jobs');
+        return this._db.collection('Jobs');
     }
 }

@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { ICBRCShareDocument } from '../documents/interfaces/ICBRCShareDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class CBRCShareRepository extends BaseRepository<ICBRCShareDocument> {
+export class CBRCShareRepository extends BaseRepositoryWithId<ICBRCShareDocument> {
     public moduleName: string = 'CBRCShareRepository';
     public logColor: string = '#afeeee';
 
@@ -11,6 +11,6 @@ export class CBRCShareRepository extends BaseRepository<ICBRCShareDocument> {
     }
 
     protected override getCollection(): Collection<ICBRCShareDocument> {
-        return this._db.collection('shares');
+        return this._db.collection('Shares');
     }
 }

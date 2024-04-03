@@ -1,9 +1,9 @@
 import { TypeConverter } from '@btc-vision/motoswapcommon';
 import { ObjectId } from 'mongodb';
 import { ICBRCTransferDocument } from '../documents/interfaces/ICBRCTransferDocument.js';
-import { BaseModel } from './BaseModel.js';
+import { BaseModelWithId } from '@btc-vision/motoswapcommon';
 
-export class CBRCTransfer extends BaseModel {
+export class CBRCTransfer extends BaseModelWithId {
     public xop: ObjectId;
     public txid: string;
     public ticker: string;
@@ -27,6 +27,10 @@ export class CBRCTransfer extends BaseModel {
     }
 
     public override toDocument(): Readonly<ICBRCTransferDocument> {
+        throw new Error('Not implemented.');
+    }
+
+    public override toDocumentWithId(): Readonly<ICBRCTransferDocument> {
         const document: ICBRCTransferDocument = {
             xop: this.xop,
             txid: this.txid,

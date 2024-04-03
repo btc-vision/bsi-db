@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { ICBRCMintDocument } from '../documents/interfaces/ICBRCMintDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class CBRCMintRepository extends BaseRepository<ICBRCMintDocument> {
+export class CBRCMintRepository extends BaseRepositoryWithId<ICBRCMintDocument> {
     public moduleName: string = 'CBRCMintRepository';
     public logColor: string = '#afeeee';
 
@@ -11,6 +11,6 @@ export class CBRCMintRepository extends BaseRepository<ICBRCMintDocument> {
     }
 
     protected override getCollection(): Collection<ICBRCMintDocument> {
-        return this._db.collection('mints');
+        return this._db.collection('Mints');
     }
 }

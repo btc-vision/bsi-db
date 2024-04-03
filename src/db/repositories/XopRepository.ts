@@ -1,8 +1,8 @@
 import { Collection, Db } from 'mongodb';
 import { IXopDocument } from '../documents/interfaces/IXopDocument.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
 
-export class XopRepository extends BaseRepository<IXopDocument> {
+export class XopRepository extends BaseRepositoryWithId<IXopDocument> {
     public moduleName: string = 'XopRepository';
     public logColor: string = '#afeeee';
 
@@ -11,6 +11,6 @@ export class XopRepository extends BaseRepository<IXopDocument> {
     }
 
     protected override getCollection(): Collection<IXopDocument> {
-        return this._db.collection('xops');
+        return this._db.collection('XOps');
     }
 }
