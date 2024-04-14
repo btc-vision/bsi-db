@@ -1,6 +1,6 @@
 {
     "type": "module",
-    "name": "@btc-vision/motoswapdb",
+    "name": "@btc-vision/bsi-db",
     "version": "1.0.14",
     "description": "",
     "main": "build/index.js",
