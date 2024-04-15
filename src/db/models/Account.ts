@@ -1,4 +1,4 @@
-import { TypeConverter, BaseModelWithId } from '@btc-vision/motoswapcommon';
+import { TypeConverter, BaseModelWithId } from '@btc-vision/bsi-common';
 import { IAccountDocument } from '../documents/interfaces/IAccountDocument.js';
 
 export class Account extends BaseModelWithId {

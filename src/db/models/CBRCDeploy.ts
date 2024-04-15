@@ -1,7 +1,7 @@
-import { TickerHelper } from '@btc-vision/motoswapcommon';
+import { TickerHelper } from '@btc-vision/bsi-common';
 import { Decimal128, ObjectId } from 'mongodb';
 import { ICBRCDeployDocument } from '../documents/interfaces/ICBRCDeployDocument.js';
-import { BaseModelWithId } from '@btc-vision/motoswapcommon';
+import { BaseModelWithId } from '@btc-vision/bsi-common';
 
 export declare type CBRCDeployMintOps = [number, number];
 

@@ -4,7 +4,7 @@ import {
     IXParamsObject,
     IXTargetObject,
 } from '../documents/interfaces/IXopDocument.js';
-import { BaseModelWithId } from '@btc-vision/motoswapcommon';
+import { BaseModelWithId } from '@btc-vision/bsi-common';
 
 export class XTargetObject {
     public type: string;

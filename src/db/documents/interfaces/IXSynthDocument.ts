@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
+import { IBaseDocumentWithId } from '@btc-vision/bsi-common';
 
 export interface IXSynthDocument extends IBaseDocumentWithId {
     readonly xop: ObjectId;

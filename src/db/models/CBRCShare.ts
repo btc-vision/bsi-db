@@ -1,7 +1,7 @@
-import { TypeConverter } from '@btc-vision/motoswapcommon';
+import { TypeConverter } from '@btc-vision/bsi-common';
 import { ObjectId } from 'mongodb';
 import { ICBRCShareDocument } from '../documents/interfaces/ICBRCShareDocument.js';
-import { BaseModelWithId } from '@btc-vision/motoswapcommon';
+import { BaseModelWithId } from '@btc-vision/bsi-common';
 
 export class CBRCShare extends BaseModelWithId {
     public pool: ObjectId;

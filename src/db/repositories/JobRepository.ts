@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
 import { IJobDocument } from '../documents/interfaces/IJobDocument.js';
-import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
+import { BaseRepositoryWithId } from '@btc-vision/bsi-common';
 
 export class JobRepository extends BaseRepositoryWithId<IJobDocument> {
     public moduleName: string = 'JobRepository';

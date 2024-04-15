@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
 import { ICBRCDeployDocument } from '../documents/interfaces/ICBRCDeployDocument.js';
-import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
+import { BaseRepositoryWithId } from '@btc-vision/bsi-common';
 
 export class CBRCDeployRepository extends BaseRepositoryWithId<ICBRCDeployDocument> {
     public moduleName: string = 'CBRCDeployRepository';

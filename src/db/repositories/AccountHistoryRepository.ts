@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
 import { IAccountHistoryDocument } from '../documents/interfaces/IAccountHistoryDocument.js';
-import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
+import { BaseRepositoryWithId } from '@btc-vision/bsi-common';
 
 export class AccountHistoryRepository extends BaseRepositoryWithId<IAccountHistoryDocument> {
     public moduleName: string = 'AccountHistoryRepository';

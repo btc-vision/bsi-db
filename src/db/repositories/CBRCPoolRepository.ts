@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
 import { ICBRCPoolDocument } from '../documents/interfaces/ICBRCPoolDocument.js';
-import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
+import { BaseRepositoryWithId } from '@btc-vision/bsi-common';
 
 export class CBRCPoolRepository extends BaseRepositoryWithId<ICBRCPoolDocument> {
     public moduleName: string = 'CBRCPoolRepository';

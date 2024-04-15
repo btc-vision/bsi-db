@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
 import { IBlockDocument } from '../documents/interfaces/IBlockDocument.js';
-import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
+import { BaseRepositoryWithId } from '@btc-vision/bsi-common';
 
 export class BlockRepository extends BaseRepositoryWithId<IBlockDocument> {
     public moduleName: string = 'BlockRepository';

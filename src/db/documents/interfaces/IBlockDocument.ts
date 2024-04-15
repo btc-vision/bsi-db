@@ -1,4 +1,4 @@
-import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
+import { IBaseDocumentWithId } from '@btc-vision/bsi-common';
 
 export interface IBlockDocument extends IBaseDocumentWithId {
     readonly height: number;

@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
 import { IXmailDocument } from '../documents/interfaces/IXmailDocument.js';
-import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
+import { BaseRepositoryWithId } from '@btc-vision/bsi-common';
 
 export class XmailRepository extends BaseRepositoryWithId<IXmailDocument> {
     public moduleName: string = 'XmailRepository';

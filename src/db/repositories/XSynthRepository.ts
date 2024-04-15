@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
 import { IXSynthDocument } from '../documents/interfaces/IXSynthDocument.js';
-import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
+import { BaseRepositoryWithId } from '@btc-vision/bsi-common';
 
 export class XSynthRepository extends BaseRepositoryWithId<IXSynthDocument> {
     public moduleName: string = 'XSynthRepository';

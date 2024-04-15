@@ -1,5 +1,5 @@
 import { IJobDocument } from '../documents/interfaces/IJobDocument.js';
-import { BaseModelWithId } from '@btc-vision/motoswapcommon';
+import { BaseModelWithId } from '@btc-vision/bsi-common';
 
 export class Job extends BaseModelWithId {
     public n: number; // !!! TODO: Junkfood: rename fielld

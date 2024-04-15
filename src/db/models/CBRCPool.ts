@@ -1,7 +1,7 @@
-import { TypeConverter } from '@btc-vision/motoswapcommon';
+import { TypeConverter } from '@btc-vision/bsi-common';
 import { ObjectId } from 'mongodb';
 import { ICBRCPoolDocument } from '../documents/interfaces/ICBRCPoolDocument.js';
-import { BaseModelWithId } from '@btc-vision/motoswapcommon';
+import { BaseModelWithId } from '@btc-vision/bsi-common';
 
 export class CBRCPool extends BaseModelWithId {
     public xop: ObjectId;

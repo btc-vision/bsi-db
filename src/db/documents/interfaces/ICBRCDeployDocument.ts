@@ -1,5 +1,5 @@
 import { Decimal128, ObjectId } from 'mongodb';
-import { IBaseDocumentWithId } from '@btc-vision/motoswapcommon';
+import { IBaseDocumentWithId } from '@btc-vision/bsi-common';
 
 export declare type ICBRCDeployDocumentMintOps = [number, number];
 

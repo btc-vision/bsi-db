@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { IXSynthDocument } from '../documents/interfaces/IXSynthDocument.js';
-import { BaseModelWithId } from '@btc-vision/motoswapcommon';
+import { BaseModelWithId } from '@btc-vision/bsi-common';
 
 export class XSynth extends BaseModelWithId {
     public xop: ObjectId;

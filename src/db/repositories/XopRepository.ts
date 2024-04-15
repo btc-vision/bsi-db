@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
 import { IXopDocument } from '../documents/interfaces/IXopDocument.js';
-import { BaseRepositoryWithId } from '@btc-vision/motoswapcommon';
+import { BaseRepositoryWithId } from '@btc-vision/bsi-common';
 
 export class XopRepository extends BaseRepositoryWithId<IXopDocument> {
     public moduleName: string = 'XopRepository';
