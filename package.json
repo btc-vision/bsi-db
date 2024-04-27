@@ -1,7 +1,7 @@
 {
     "type": "module",
     "name": "@btc-vision/bsi-db",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "",
     "main": "build/index.js",
     "types": "build/index.d.ts",
@@ -35,26 +35,18 @@
     },
     "dependencies": {
         "@jest/types": "^29.6.3",
-        "@types/bignumber.js": "^5.0.0",
-        "@types/cors": "^2.8.17",
         "@types/debug": "^4.1.12",
         "@types/jest": "^29.5.12",
-        "@types/mongo-sanitize": "^1.0.3",
         "babel-plugin-transform-import-meta": "^2.2.1",
         "bignumber.js": "^9.1.2",
-        "chalk": "^5.3.0",
         "cors": "^2.8.5",
         "gulp": "^4.0.2",
         "gulp-cached": "^1.1.1",
         "gulp-logger": "^0.0.2",
         "gulp-typescript": "^6.0.0-alpha.1",
-        "mongo-sanitize": "^1.1.0",
         "mongodb": "^6.5.0",
-        "supports-color": "^9.4.0",
-        "tiny-secp256k1": "^2.2.3",
-        "toml": "^3.0.0",
         "ts-jest": "^29.1.2",
         "ts-node": "^10.9.2",
-        "@btc-vision/bsi-common": "^1.0.0"
+        "@btc-vision/bsi-common": "latest"
     }
 }
